@@ -12,7 +12,7 @@ on: pull_request_target
 
 jobs:
   auto-approve:
-    if: github.actor == 'mcdurdin' && contains(github.event.pull_request.labels.*.name, 'auto')
+    if: github.actor == 'mcdurdin' && startsWith(github.event.pull_request.head_ref, 'auto/')
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
