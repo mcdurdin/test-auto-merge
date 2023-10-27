@@ -22,6 +22,8 @@ jobs:
   auto-approve:
     if: github.actor == 'mcdurdin' && startsWith(github.event.pull_request.head.ref, 'auto/')
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     permissions:
       pull-requests: write
     steps:
