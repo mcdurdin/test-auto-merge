@@ -1,1 +1,1 @@
-# Testing auto-mereg
+# Testing auto-merge
