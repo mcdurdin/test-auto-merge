@@ -17,10 +17,10 @@ jobs:
     - run: |
            echo "actor: ${{github.actor}}"
            echo "head: ${{github.event.pull_request.head_ref}}"
-           echo "hsw: .${{startsWith(github.event.pull_request.head_ref, 'auto/')}}."
+           echo "hsw: .${{startsWith(github.event.pull_request.head.ref, 'auto/')}}."
 
   auto-approve:
-    if: github.actor == 'mcdurdin' && startsWith(github.event.pull_request.head_ref, 'auto/')
+    if: github.actor == 'mcdurdin' && startsWith(github.event.pull_request.head.ref, 'auto/')
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
