@@ -13,7 +13,7 @@ on: pull_request_target
 jobs:
   auto-approve:
     if: github.actor == 'mcdurdin'
-    if: contains(github.event.pull_request.labels.*.name, 'auto')
+    if: ${{ contains(github.event.pull_request.labels.*.name, 'auto') }}
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
