@@ -11,6 +11,13 @@ name: Auto Approve PRs from keyman-server
 on: pull_request_target
 
 jobs:
+  deets:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+           echo "actor: ${{github.actor}}"
+           echo "head: ${{github.event.pull_reuqest.head_ref}}"
+
   auto-approve:
     if: github.actor == 'mcdurdin' && startsWith(github.event.pull_request.head_ref, 'auto/')
     runs-on: ubuntu-latest
