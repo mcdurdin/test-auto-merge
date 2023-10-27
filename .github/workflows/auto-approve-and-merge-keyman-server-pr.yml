@@ -1,0 +1,29 @@
+#
+# Automatically approves pull requests opened by keyman-server
+# The initial use of this action is to upload product help documentation
+# with resources/build/help-keyman-com.sh.
+# That script creates a PR and then this workflow will be
+# triggered to approve the PR, and then auto-merge-keyman-server-pr.yml
+# will merge it
+#
+name: Auto Approve PRs from keyman-server
+
+on: pull_request_target
+  branches:
+  - 'auto/**'
+
+jobs:
+  auto-approve:
+    if: github.actor == 'keyman-server'
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Approve pull request
+      run: |
+           gh pr review --approve
+    - name: Enable auto-merge
+      run: |
+           gh pr merge --merge --auto
