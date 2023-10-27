@@ -8,9 +8,10 @@
 #
 name: Auto Approve PRs from keyman-server
 
-on: pull_request_target
-  branches:
-  - 'auto/**'
+on:
+  pull_request_target:
+    branches:
+    - 'auto/**'
 
 jobs:
   auto-approve:
