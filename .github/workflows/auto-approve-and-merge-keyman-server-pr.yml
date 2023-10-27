@@ -16,8 +16,9 @@ jobs:
     steps:
     - run: |
            echo "actor: ${{github.actor}}"
-           echo "head: ${{github.event.pull_request.head_ref}}"
-           echo "hsw: .${{startsWith(github.event.pull_request.head.ref, 'auto/')}}."
+           echo "head: ${{github.event.pull_request.head.ref}}"
+           echo "head_ref: ${{github.head_ref}}"
+           echo "hsw: .${{startsWith(github.head_ref, 'auto/')}}."
 
   auto-approve:
     if: github.actor == 'mcdurdin' && startsWith(github.event.pull_request.head.ref, 'auto/')
@@ -35,7 +36,7 @@ jobs:
         sparse-checkout-cone-mode: false
     - name: Approve pull request
       run: |
-           gh pr review --approve
+           gh pr review --approve ${{github.head_ref}}
     - name: Enable auto-merge
       run: |
-           gh pr merge --merge --auto
+           gh pr merge --merge --auto ${{github.head_ref}}
